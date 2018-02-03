@@ -10,6 +10,8 @@ public class Seat {
 
     public Table table;
     public String number;
+    public boolean forFree;
+    public boolean child;
 
     public Seat(Table table, String number) {
         this.table = table;
@@ -17,8 +19,6 @@ public class Seat {
     }
 
     public Reservation reservation;
-    public int costCents;
-    public boolean forFree;
     public boolean currentReservationPossible;
 
     public void setCurrentReservationPossible(boolean currentReservationPossible) {

@@ -1,5 +1,6 @@
 package pete.weekend.kabaeuske.view;
 
+import pete.weekend.kabaeuske.Preferences;
 import pete.weekend.kabaeuske.model.Reservation;
 import pete.weekend.kabaeuske.model.Staging;
 import javafx.collections.FXCollections;
@@ -37,8 +38,8 @@ public class CashView {
     public Node getNode() {
         VBox vBox = new VBox();
 
-        vBox.setSpacing(5);
-        vBox.setPadding(new Insets(10, 0, 0, 10));
+        vBox.setSpacing(Preferences.get().spacing());
+        vBox.setPadding(Preferences.get().insets());
         HBox table = tableAndButtons();
         table.setMaxHeight(Double.MAX_VALUE);
         VBox.setVgrow(table, Priority.ALWAYS);
@@ -65,8 +66,8 @@ public class CashView {
 
     private HBox labels() {
         HBox hBoxLabels = new HBox();
-        hBoxLabels.setSpacing(5);
-        hBoxLabels.setPadding(new Insets(3, 3, 3, 3));
+        hBoxLabels.setSpacing(Preferences.get().spacing());
+        hBoxLabels.setPadding(Preferences.get().insets());
         HBox hBoxLabelsLeft = new HBox();
         hBoxLabelsLeft.getChildren().add(new Label("Anzahl noch fehlender GästeGruppen:"));
         hBoxLabelsLeft.getChildren().add(new Label("-"));
@@ -78,8 +79,8 @@ public class CashView {
 
     private HBox totals() {
         HBox hBoxLabels = new HBox();
-        hBoxLabels.setSpacing(5);
-        hBoxLabels.setPadding(new Insets(3, 3, 3, 3));
+        hBoxLabels.setSpacing(Preferences.get().spacing());
+        hBoxLabels.setPadding(Preferences.get().insets());
         HBox hBoxLabelsLeft = new HBox();
         hBoxLabelsLeft.getChildren().add(new Label("Gästegruppen:"));
         hBoxLabelsLeft.getChildren().add(new Label("-"));

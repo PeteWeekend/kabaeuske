@@ -1,11 +1,15 @@
 package pete.weekend.kabaeuske.view;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import pete.weekend.kabaeuske.Preferences;
 import pete.weekend.kabaeuske.model.Staging;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
 
 public class StagingView {
+
 
 
     Staging staging;
@@ -17,9 +21,10 @@ public class StagingView {
     public Node getNode() {
 
         HBox hbox = new HBox();
-
+        Image logo = new Image("/KabaeuskeLogo.png",Preferences.get().seatWidth()*4, Preferences.get().seatHeight()*3, false, false, false);
+        ImageView logoView = new ImageView(logo);
         GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(5,5,5,5));
+        gridPane.setPadding(Preferences.get().insets());
 
         gridPane.setHgap(10f);gridPane.setVgap(10f);
         staging.seating.tables.forEach(
@@ -27,6 +32,7 @@ public class StagingView {
                     gridPane.add(new TableView(table).getNode(),table.col,table.row);
                 }
         );
+        gridPane.add(logoView,3,4);
 
         hbox.getChildren().add(gridPane);
         Node control = ControlView.getInstance().getNode();

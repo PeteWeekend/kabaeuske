@@ -94,7 +94,14 @@ public class Reservation {
                 while (seatIteratort.hasNext()) {
                     Seat seat = seatIteratort.next();
                     if (table.equals(seat.table.name)) {
-                        s.append(seat.number).append(" ");
+                        s.append(seat.number).append("x");
+                        if (seat.forFree) {
+                            s.append("F");
+                        }
+                        if (seat.child) {
+                            s.append("K");
+                        }
+                        s.append(" ");
                     }
                 }
 
@@ -111,7 +118,15 @@ public class Reservation {
             StringBuffer s = new StringBuffer();
             Iterator<Seat> it = seats.iterator();
             while (it.hasNext()) {
-                s.append(it.next().number);
+                Seat seat = it.next();
+                s.append(seat.number);
+                if (seat.forFree) {
+                    s.append("F");
+                }
+                if (seat.child) {
+                    s.append("K");
+                }
+
                 if (it.hasNext()) {
                     s.append(", ");
                 }

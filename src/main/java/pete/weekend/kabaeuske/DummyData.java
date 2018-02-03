@@ -1,12 +1,10 @@
 package pete.weekend.kabaeuske;
 
-import pete.weekend.kabaeuske.model.Reservation;
-import pete.weekend.kabaeuske.model.Season;
-import pete.weekend.kabaeuske.model.Seat;
-import pete.weekend.kabaeuske.model.Staging;
+import pete.weekend.kabaeuske.model.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.stream.Stream;
 
 public class DummyData {
 
@@ -25,6 +23,42 @@ public class DummyData {
     }
 
     private static void addDummyReservations(Season season) {
+
+        String[] names = new String[]{"Leusch","Wedekind","Drees","Icking","Jurisch","Streese","Tillmann","Teitscheidt","Schuler","Steffen","Scheid",
+        "Schasting","Scheites","Wallraff",};
+
+        season.stagings.forEach( staging -> {
+
+            Stream.of(names).forEach( name -> {
+
+                Reservation r = new Reservation(name,staging);
+
+                Table t  = staging.seating.tables.get((int)(staging.seating.tables.size()*Math.random()));
+                boolean dummySet=false;
+                while (!dummySet) {
+                    int numSeats = 1 + (int) (3 * Math.random()+(int) ((t.seats.size()-3) * Math.random()*0.66));
+
+                    if (t.numOfFreeSeats() >= numSeats) {
+                        for (int i = 0; i < numSeats; i++) {
+                            Seat s = t.seats.get(i);
+                            if (s.reservation == null) {
+                                s.reservation = r;
+                                s.reservation.getSeats().add(s);
+                                s.forFree=Math.random()>0.80;
+                                s.child=Math.random()>0.75;
+                             }
+                        }
+                        dummySet=true;
+                        staging.reservations.add(r);
+                    }
+                }
+
+            });
+
+
+        });
+
+        /*
         Reservation r = new Reservation("Leusch",season.stagings.get(0));
         Seat s = season.stagings.get(0).seating.tables.get(0).seats.get(1);
         s.reservation = r;
@@ -60,6 +94,7 @@ public class DummyData {
         s.reservation = r;
         r.getSeats().add(s);
         season.stagings.get(1).reservations.add(r);
+        */
 
     }
 
@@ -67,7 +102,7 @@ public class DummyData {
         Staging staging = new Staging();
         staging.date = date;
         staging.name = name+" "+date.format(DateTimeFormatter.ISO_DATE);
-        staging.seating = Elisabeth.createDefaultSeating();
+        staging.seating = PBouwmansHaus.createDefaultSeating();
         return staging;
     }
 

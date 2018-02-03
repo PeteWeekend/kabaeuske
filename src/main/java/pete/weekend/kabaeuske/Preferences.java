@@ -1,5 +1,7 @@
 package pete.weekend.kabaeuske;
 
+import javafx.geometry.Insets;
+
 public class Preferences {
 
     private static Preferences instance = new Preferences();
@@ -18,10 +20,17 @@ public class Preferences {
         return 5;
     }
     public int seatWidth() {
-        return 20;
+        return 40;
     }
     public int seatHeight() {
-        return 30;
+        return 60;
     }
 
+    public Insets insets() {
+        return new Insets(5,5,5,5);
+    }
+
+    public double spacing() {
+        return 5;
+    }
 }

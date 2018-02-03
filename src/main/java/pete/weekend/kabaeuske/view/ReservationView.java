@@ -1,5 +1,6 @@
 package pete.weekend.kabaeuske.view;
 
+import pete.weekend.kabaeuske.Preferences;
 import pete.weekend.kabaeuske.control.SeatFinder;
 import pete.weekend.kabaeuske.model.Reservation;
 import pete.weekend.kabaeuske.model.Staging;
@@ -40,8 +41,8 @@ public class ReservationView {
     public Node getNode() {
         VBox vBox = new VBox();
 
-        vBox.setSpacing(5);
-        vBox.setPadding(new Insets(10, 0, 0, 10));
+        vBox.setSpacing(Preferences.get().spacing());
+        vBox.setPadding(Preferences.get().insets());
         HBox table = tableAndButtons();
         table.setMaxHeight(Double.MAX_VALUE);
         VBox.setVgrow(table, Priority.ALWAYS);
@@ -58,8 +59,8 @@ public class ReservationView {
         VBox vBox = new VBox();
 
         HBox hBox = new HBox();
-        hBox.setSpacing(5);
-        hBox.setPadding(new Insets(3, 3, 3, 3));
+        hBox.setSpacing(Preferences.get().spacing());
+        hBox.setPadding(Preferences.get().insets());
         hBox.getChildren().add(new Label("Neu"));
         TextField name = new TextField(currentReservationName);
         name.setMaxWidth(Double.MAX_VALUE);
@@ -67,7 +68,6 @@ public class ReservationView {
         hBox.getChildren().add(name);
         name.setOnKeyReleased(e -> {
             currentReservationName = name.getText();
-            System.out.println("Set currentName to:" + name.getText());
         });
         ChoiceBox cb = new ChoiceBox();
         cb.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8");
@@ -95,8 +95,8 @@ public class ReservationView {
 
     private HBox labels() {
         HBox hBoxLabels = new HBox();
-        hBoxLabels.setSpacing(5);
-        hBoxLabels.setPadding(new Insets(3, 3, 3, 3));
+        hBoxLabels.setSpacing(Preferences.get().spacing());
+        hBoxLabels.setPadding(Preferences.get().insets());
         HBox hBoxLabelsLeft = new HBox();
         hBoxLabelsLeft.getChildren().add(new Label("Max Anzahl zusammenh. Plätze:"));
         hBoxLabelsLeft.getChildren().add(new Label("-"));
@@ -116,8 +116,8 @@ public class ReservationView {
     }
     private HBox totals() {
         HBox hBoxLabels = new HBox();
-        hBoxLabels.setSpacing(5);
-        hBoxLabels.setPadding(new Insets(3, 3, 3, 3));
+        hBoxLabels.setSpacing(Preferences.get().spacing());
+        hBoxLabels.setPadding(Preferences.get().insets());
         HBox hBoxLabelsLeft = new HBox();
         hBoxLabelsLeft.getChildren().add(new Label("Gesamtzahl Plätze:"));
         hBoxLabelsLeft.getChildren().add(new Label("-"));

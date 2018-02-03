@@ -1,10 +1,11 @@
 package pete.weekend.kabaeuske;
 
+import javafx.scene.image.Image;
 import pete.weekend.kabaeuske.model.Seat;
 import pete.weekend.kabaeuske.model.Seating;
 import pete.weekend.kabaeuske.model.Table;
 
-public class Elisabeth {
+public class PBouwmansHaus {
     public static Seating createDefaultSeating() {
 
         Seating seating = new Seating();
