@@ -34,7 +34,7 @@ public class SeatView {
 
     }
 
-    Node getView() {
+    Node createView() {
 
         StackPane seatPane = new StackPane();
 

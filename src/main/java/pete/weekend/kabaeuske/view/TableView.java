@@ -16,7 +16,7 @@ public class TableView {
         this.table=table;
     }
 
-    public Node getNode() {
+    public Node createView() {
 
         VBox tableNode = new VBox();
         tableNode.setSpacing(2);
@@ -37,8 +37,8 @@ public class TableView {
         tableGrid.setHgap(1);
         tableGrid.setVgap(1);
 
-        table.seats.forEach(c->{
-            tableGrid.add(new SeatView(c).getView(),c.col,c.row);
+        table.seats.forEach(seat->{
+            tableGrid.add(new SeatView(seat).createView(),seat.col,seat.row);
         });
         tableNode.getChildren().add(tableGrid);
         return tableNode;

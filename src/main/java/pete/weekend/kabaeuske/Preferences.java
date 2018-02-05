@@ -1,6 +1,7 @@
 package pete.weekend.kabaeuske;
 
 import javafx.geometry.Insets;
+import javafx.scene.text.Font;
 
 public class Preferences {
 
@@ -32,5 +33,9 @@ public class Preferences {
 
     public double spacing() {
         return 5;
+    }
+
+    public Font fontBig() {
+        return new Font("Arial", 24);
     }
 }

@@ -27,18 +27,18 @@ public class ReservationView {
 
     Staging staging;
 
-    private ObservableList<Reservation> reservations = FXCollections.observableArrayList();;
+    private ObservableList<Reservation> reservations = FXCollections.observableArrayList();
+
 
     private int currentFreeFind;
     private String currentReservationName = "";
 
-    public void setStaging(Staging staging) {
-        reservations.clear();
+    public ReservationView(Staging staging) {
         this.staging = staging;
         reservations.addAll(staging.reservations);
     }
 
-    public Node getNode() {
+    public Node createView() {
         VBox vBox = new VBox();
 
         vBox.setSpacing(Preferences.get().spacing());
@@ -83,9 +83,8 @@ public class ReservationView {
         vBox.getChildren().add(hBox);
 
 
-
         vBox.getChildren().add(labels());
-        vBox.getChildren().add(new Line(0,0,200,0));
+        vBox.getChildren().add(new Line(0, 0, 200, 0));
         vBox.getChildren().add(totals());
 
 
@@ -114,6 +113,7 @@ public class ReservationView {
         hBoxLabels.getChildren().add(hBoxLabelsRight);
         return hBoxLabels;
     }
+
     private HBox totals() {
         HBox hBoxLabels = new HBox();
         hBoxLabels.setSpacing(Preferences.get().spacing());
@@ -160,7 +160,7 @@ public class ReservationView {
         HBox.setHgrow(tableView, Priority.ALWAYS);
         hBox.getChildren().add(tableView);
         VBox buttons = new VBox();
-        Image seatFree = new Image("/trash.png",32, 32, false, false, false);
+        Image seatFree = new Image("/trash.png", 32, 32, false, false, false);
         ImageView iv = new ImageView(seatFree);
         Button deleteButton = new Button("", iv);
         buttons.getChildren().add(deleteButton);

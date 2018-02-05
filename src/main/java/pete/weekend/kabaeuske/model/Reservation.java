@@ -1,5 +1,8 @@
 package pete.weekend.kabaeuske.model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,6 +21,7 @@ public class Reservation {
         this.name = name;
         this.reservedAt = LocalDateTime.now();
         this.staging = staging;
+        this.paid.setValue(Math.random()>0.5);
     }
 
     public String getName() {
@@ -75,6 +79,16 @@ public class Reservation {
 
     public String getSum() {
         return String.format("%2.2f",Math.random()*20)+"€";
+    }
+
+    public BooleanProperty paid = new SimpleBooleanProperty();
+
+    public void setPaid(Boolean paid) {
+        this.paid.setValue(paid);
+    }
+
+    public Boolean getPaid() {
+        return paid.getValue();
     }
 
     public String getSeatNumbers() {

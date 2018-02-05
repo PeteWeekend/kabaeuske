@@ -11,8 +11,8 @@ public class DummyData {
     static Season createDummy() {
         Season season = new Season();
         season.name = "Spielzeit 20Dummy";
-        season.stagings.add(staging("GeneralProbe",LocalDateTime.of(2018, 9, 18, 18, 00)));
-        season.stagings.add(staging("Premiere",LocalDateTime.of(2018, 9, 20, 20, 00)));
+        season.stagings.add(staging("GeneralProbe",LocalDateTime.of(2018, 2, 5, 19, 00)));
+        season.stagings.add(staging("Premiere",LocalDateTime.of(2018, 2, 5, 21, 00)));
         season.stagings.add(staging("",LocalDateTime.of(2018, 9, 21, 20, 00)));
         season.stagings.add(staging("",LocalDateTime.of(2018, 9, 22, 20, 00)));
         season.stagings.add(staging("",LocalDateTime.of(2018, 9, 23, 20, 00)));

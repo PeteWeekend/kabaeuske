@@ -15,11 +15,8 @@ public class TicketCenter extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-        ControlView.getInstance().setSeason(season);
-        ControlView.getInstance().setCurrentStaging(season.stagings.get(0));
-
         primaryStage.setTitle("Kabäuske Ticket Center - " + season.name);
-        primaryStage.setScene(new Scene(new SeasonView(season).getPane(), 1024, 800));
+        primaryStage.setScene(new Scene(new SeasonView(season).createView(), 1024, 800));
         primaryStage.show();
     }
 

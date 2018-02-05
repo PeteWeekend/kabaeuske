@@ -1,5 +1,6 @@
 package pete.weekend.kabaeuske.view;
 
+import javafx.scene.Node;
 import pete.weekend.kabaeuske.model.Season;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -15,23 +16,23 @@ public class SeasonView {
         this.model = model;
     }
 
-    public TabPane getPane() {
+    public TabPane createView() {
 
         Map<String, StagingView> views = new HashMap();
-        model.stagings.forEach(s -> {
-            views.put(s.name, new StagingView(s));
+        model.stagings.forEach(staging -> {
+            views.put(staging.name, new StagingView(staging));
         });
 
 
         TabPane tabs = new TabPane();
         tabs.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
-            ControlView.getInstance().setCurrentStaging( views.get(nv.getText()).staging);
+            //ControlView.getInstance().setCurrentStaging( views.get(nv.getText()).staging);
             views.get(nv.getText()).staging.clearPossibleReservations();
         });
 
         views.values().forEach(
-                s -> {
-                    Tab tab = new Tab(s.staging.name, s.getNode());
+                stagingView -> {
+                    Tab tab = new Tab(stagingView.staging.name, stagingView.createView());
                     tabs.getTabs().add(tab);
                 }
         );
